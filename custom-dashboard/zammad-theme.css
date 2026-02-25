@@ -1,0 +1,649 @@
+/* === GLOBAL ZAMMAD CSS VARIABLES OVERRIDE === */
+:root,
+html,
+html[data-theme="light"],
+html[data-theme="dark"],
+body {
+  --background-primary: #f4f5f9 !important;
+  --background-primary-alt: #f4f5f9 !important;
+  --background-secondary: #ffffff !important;
+  --background-secondary-hover: #f9fafb !important;
+  --background-tertiary: #ffffff !important;
+  --background-quaternary: #ffffff !important;
+  --background-quaternary-alt: #ffffff !important;
+
+  --background-popover: #ffffff !important;
+  --background-article-meta: #f9fafb !important;
+  --background-article-customer: #f4f5f9 !important;
+  --background-article-customer-meta: #ffffff !important;
+
+  --background-modifier-accent: rgba(0, 0, 0, 0.05) !important;
+  --background-modifier-accent-light: rgba(0, 0, 0, 0.02) !important;
+  --background-modifier-accent-dark: rgba(0, 0, 0, 0.1) !important;
+  --background-modifier-border: #e2e8f0 !important;
+  --background-modifier-hover: rgba(94, 23, 246, 0.08) !important;
+
+  --text-primary: #1e293b !important;
+  --text-secondary: #475569 !important;
+  --text-tertiary: #64748b !important;
+  --text-nav: #475569 !important;
+
+  --interactive-primary: #1e293b !important;
+  --interactive-muted: #94a3b8 !important;
+  --interactive-muted-active: #475569 !important;
+
+  --highlight: #5E17F6 !important;
+  --background-active: #5E17F6 !important;
+
+  --color-brand: #5E17F6 !important;
+  --color-primary: #5E17F6 !important;
+}
+
+/* Hard override for text/backgrounds in inputs just in case */
+input,
+select,
+textarea,
+.richtext-editor,
+.ProseMirror,
+.selectize-input {
+  background-color: var(--background-tertiary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--background-modifier-border) !important;
+}
+
+/* === LOGO FIX === */
+.logo {
+  width: 38px !important;
+  max-width: 100% !important;
+  height: 38px !important;
+  overflow: visible !important;
+  flex-shrink: 0 !important;
+  position: relative !important;
+  background: none !important;
+  color: transparent !important;
+  margin: 0 !important;
+}
+
+.logo svg.icon-logo,
+.logo img,
+.logo canvas,
+.logo object {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+.logo::before {
+  display: none !important;
+}
+
+.logo .activity-counter {
+  display: block;
+  /* rely on zammad's native inline styles for none/block */
+}
+
+.logo::after {
+  content: "" !important;
+  display: block !important;
+  width: 38px !important;
+  max-width: 100% !important;
+  height: 38px !important;
+  background: url(/allyra-logo.png) no-repeat center center !important;
+  background-size: contain !important;
+}
+
+/* === LEFT NAV SIDEBAR === */
+#navigation,
+.navigation.vertical {
+  background: #ffffff !important;
+  border-right: 1px solid #e2e8f0 !important;
+}
+
+/* Clear backgrounds on nav items BUT exclude the logo pseudo-element */
+#navigation>*:not(.logo),
+#navigation li,
+#navigation a,
+#navigation span,
+#navigation .menu-item,
+#navigation .tasks .task {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+#navigation .active,
+#navigation .is-active,
+#navigation li.active {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+#navigation a,
+#navigation span,
+#navigation .menu-item {
+  color: #475569 !important;
+}
+
+#navigation .active a,
+#navigation .active span {
+  color: #1e293b !important;
+}
+
+#navigation .search-input {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  color: #1e293b !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+#navigation .tasks .task {
+  border-bottom-color: #e2e8f0 !important;
+}
+
+/* === MAIN CONTENT AREA DARK === */
+body,
+#app {
+  background: #f4f5f9 !important;
+}
+
+.main,
+.content,
+.main.flex,
+.content.horizontal,
+.content.vertical {
+  background: #f4f5f9 !important;
+  color: #1e293b !important;
+}
+
+/* === HEADER BAR === */
+.header,
+.page-header,
+.header-title,
+.js-page-header {
+  background: #f4f5f9 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
+.page-header h1,
+.header h1,
+.header h2,
+.header h3 {
+  color: #0f172a !important;
+}
+
+/* === SECONDARY SIDEBAR (Overviews tree) === */
+.sidebar,
+.sidebar-content,
+.overview-sidebar {
+  background: #ffffff !important;
+  border-right: 1px solid #e2e8f0 !important;
+  color: #475569 !important;
+}
+
+.sidebar a,
+.sidebar .item {
+  color: #475569 !important;
+}
+
+.sidebar a:hover,
+.sidebar .item:hover {
+  background: rgba(0, 0, 0, 0.04) !important;
+  color: #1e293b !important;
+}
+
+.sidebar .active a,
+.sidebar .active .item,
+.sidebar a.active {
+  background: rgba(139, 92, 246, 0.12) !important;
+  color: #8b5cf6 !important;
+}
+
+/* === TABLES === */
+.table,
+table {
+  background: #f4f5f9 !important;
+  color: #1e293b !important;
+}
+
+.table thead,
+table thead {
+  background: #ffffff !important;
+}
+
+.table thead th,
+table thead th {
+  color: #64748b !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  background: transparent !important;
+}
+
+.table tbody tr,
+table tbody tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03) !important;
+}
+
+.table tbody tr:hover,
+table tbody tr:hover {
+  background: rgba(0, 0, 0, 0.03) !important;
+}
+
+.table td,
+table td {
+  color: #475569 !important;
+  border-bottom-color: #e2e8f0 !important;
+}
+
+/* === TABS === */
+.tabs .tab,
+.nav-tabs li a {
+  color: #64748b !important;
+  border-bottom-color: transparent !important;
+}
+
+.tabs .tab.active,
+.nav-tabs li.active a,
+.tabs .tab.is-active {
+  color: #8b5cf6 !important;
+  border-bottom-color: #8b5cf6 !important;
+  background: transparent !important;
+}
+
+/* === OVERVIEW CONTENT === */
+.overview-content,
+.ticket-overview,
+.overview,
+.ticketZoom,
+.ticket_manage {
+  background: #f4f5f9 !important;
+}
+
+/* === MISC CARDS AND PANELS === */
+.box,
+.card,
+.panel,
+.well,
+.modal-content {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
+/* === BUTTONS === */
+.btn-default {
+  background: #f9fafb !important;
+  border-color: #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
+.btn-primary {
+  background: #5E17F6 !important;
+  border-color: #5E17F6 !important;
+  color: #ffffff !important;
+}
+
+/* === AVATAR === */
+.avatar {
+  border: 2px solid #5E17F6 !important;
+}
+
+/* === FORM ELEMENTS === */
+input,
+select,
+textarea {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
+/* === LINKS === */
+a {
+  color: #8b5cf6 !important;
+}
+
+a:hover {
+  color: #a78bfa !important;
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1) !important;
+  border-radius: 3px !important;
+}
+
+/* === TICKET ZOOM === */
+.ticketZoom-header {
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+.article-content,
+.article-body {
+  background: #f9fafb !important;
+  color: #1e293b !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* === TITLES === */
+.overview h1,
+.overview h2,
+.overview h3,
+.manage h1,
+.manage h2 {
+  color: #0f172a !important;
+}
+
+/* === DROPDOWN / POPOVER === */
+.dropdown-menu {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+.dropdown-menu li a {
+  color: #475569 !important;
+}
+
+.dropdown-menu li a:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+.popover {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #1e293b !important;
+  /* Override any lingering old Javascript inline coordinates */
+  position: absolute !important;
+  top: auto !important;
+  bottom: auto !important;
+  right: auto !important;
+  left: 60px !important;
+  /* Force flush left to sidebar */
+}
+
+/* === ADMIN / MANAGE / PROFILE === */
+.manage,
+.settings,
+.profile,
+.reporting,
+.content--manage,
+.page-content,
+.js-page,
+.main .content {
+  background: #f4f5f9 !important;
+  color: #1e293b !important;
+}
+
+.main *,
+.content * {
+  border-color: #e2e8f0 !important;
+}
+
+.manage .sidebar,
+.settings .sidebar,
+.NavBarAdmin,
+.NavBarAdmin-body {
+  background: #ffffff !important;
+}
+
+.table-overview,
+.settings .content,
+.manage .content,
+.profile .content {
+  background: #f4f5f9 !important;
+}
+
+.modal-dialog {
+  color: #333 !important;
+}
+
+.ticket-article-item {
+  border-color: #e2e8f0 !important;
+}
+
+/* === ZAMMAD NEW TICKET & GENERAL UI FIXES === */
+
+/* Overrides for light backgrounds in forms and creation screens */
+.bg-light,
+.bg-white,
+.box--light,
+.js-form,
+.ticketCreate,
+.form-content,
+.js-ticketCreate {
+  background: transparent !important;
+}
+
+.fieldset,
+fieldset {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Form Tabs (e.g., Received Call, Outbound Call, Send Email) */
+.ticketCreate-tabs,
+.tabs-item,
+.segmentedControl,
+.segmentedControl-item {
+  background: #ffffff !important;
+  color: #64748b !important;
+  border-color: #e2e8f0 !important;
+}
+
+.ticketCreate-tabs .is-active,
+.segmentedControl-item.is-active,
+.segmentedControl-item.is-selected {
+  background: #5E17F6 !important;
+  color: #ffffff !important;
+  border-color: #5E17F6 !important;
+}
+
+/* Rich Text Editor */
+.richtext-editor,
+.richtext,
+.ProseMirror,
+.js-editor,
+.editor,
+.note-editable,
+.richtext-content {
+  background: #ffffff !important;
+  color: #1e293b !important;
+  border-color: #e2e8f0 !important;
+}
+
+.richtext-editor p,
+.ProseMirror p {
+  color: #1e293b !important;
+}
+
+/* Token / Search Inputs (like Customer field) */
+.token-input,
+.token-list,
+.selectize-input,
+.js-objectInput {
+  background: #ffffff !important;
+  color: #1e293b !important;
+  border-color: #e2e8f0 !important;
+}
+
+.selectize-input.full,
+.selectize-input.fluid {
+  background: #ffffff !important;
+}
+
+.selectize-dropdown {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+.selectize-dropdown-content .option {
+  color: #1e293b !important;
+}
+
+.selectize-dropdown-content .option.active,
+.selectize-dropdown-content .option:hover {
+  background: rgba(139, 92, 246, 0.2) !important;
+  color: #1e293b !important;
+}
+
+/* Form Labels & Placeholders */
+label,
+.control-label,
+.form-group label {
+  color: #64748b !important;
+}
+
+::placeholder {
+  color: #94a3b8 !important;
+  opacity: 1 !important;
+}
+
+::-webkit-input-placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Right Sidebar (Templates) */
+.sidebar-right,
+.ticketCreate-sidebar,
+.js-sidebarRight,
+.sidebar-content {
+  background: #f4f5f9 !important;
+  border-left: 1px solid #e2e8f0 !important;
+}
+
+.sidebar-right *,
+.ticketCreate-sidebar * {
+  border-color: #e2e8f0 !important;
+}
+
+/* === ZAMMAD NEW TICKET & GENERAL UI FIXES === */
+
+/* Overrides for light backgrounds in forms and creation screens */
+.bg-light,
+.bg-white,
+.box--light,
+.js-form,
+.ticketCreate,
+.form-content,
+.js-ticketCreate {
+  background: transparent !important;
+}
+
+.fieldset,
+fieldset {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Form Tabs (e.g., Received Call, Outbound Call, Send Email) */
+.ticketCreate-tabs,
+.tabs-item,
+.segmentedControl,
+.segmentedControl-item {
+  background: #ffffff !important;
+  color: #64748b !important;
+  border-color: #e2e8f0 !important;
+}
+
+.ticketCreate-tabs .is-active,
+.segmentedControl-item.is-active,
+.segmentedControl-item.is-selected {
+  background: #5E17F6 !important;
+  color: #ffffff !important;
+  border-color: #5E17F6 !important;
+}
+
+/* Rich Text Editor */
+.richtext-editor,
+.richtext,
+.ProseMirror,
+.js-editor,
+.editor,
+.note-editable,
+.richtext-content {
+  background: #ffffff !important;
+  color: #1e293b !important;
+  border-color: #e2e8f0 !important;
+}
+
+.richtext-editor p,
+.ProseMirror p {
+  color: #1e293b !important;
+}
+
+/* Token / Search Inputs (like Customer field) */
+.token-input,
+.token-list,
+.selectize-input,
+.js-objectInput {
+  background: #ffffff !important;
+  color: #1e293b !important;
+  border-color: #e2e8f0 !important;
+}
+
+.selectize-input.full,
+.selectize-input.fluid {
+  background: #ffffff !important;
+}
+
+.selectize-dropdown {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+.selectize-dropdown-content .option {
+  color: #1e293b !important;
+}
+
+.selectize-dropdown-content .option.active,
+.selectize-dropdown-content .option:hover {
+  background: rgba(139, 92, 246, 0.2) !important;
+  color: #1e293b !important;
+}
+
+/* Form Labels & Placeholders */
+label,
+.control-label,
+.form-group label {
+  color: #64748b !important;
+}
+
+::placeholder {
+  color: #94a3b8 !important;
+  opacity: 1 !important;
+}
+
+::-webkit-input-placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Right Sidebar (Templates) */
+.sidebar-right,
+.ticketCreate-sidebar,
+.js-sidebarRight,
+.sidebar-content {
+  background: #f4f5f9 !important;
+  border-left: 1px solid #e2e8f0 !important;
+}
+
+.sidebar-right *,
+.ticketCreate-sidebar * {
+  border-color: #e2e8f0 !important;
+}
+
+/* === CHECKBOX & RADIO FIXES === */
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--color-brand) !important;
+}
+
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+  background-color: var(--color-brand) !important;
+  border-color: var(--color-brand) !important;
+  color: #ffffff !important;
+}

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Zammad Support Ticket Analytics Dashboard — Track tickets, agent performance, and SLA metrics" />
+  <title>allyra.ai — Zammad Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+
+<body>
+  <div id="app">
+    <!-- Top Dashboard Glow Effect -->
+    <div class="dashboard-glow"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <a href="/dashboard/" style="display: flex; align-items: center; width: 100%;">
+          <img src="/allyra-text-logo.png" alt="allyra.ai"
+            style="height: 38px; width: 150px; object-fit: contain; margin-left: 0px;" />
+        </a>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Main</div>
+        <a href="/dashboard/" class="nav-item active" data-page="dashboard">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+          </svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="/#ticket/view" class="nav-item" data-zammad="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 6h16M4 10h16M4 14h10M4 18h7" />
+          </svg>
+          <span>Overviews</span>
+        </a>
+        <a href="/#ticket/create" class="nav-item" data-zammad="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="16" />
+            <line x1="8" y1="12" x2="16" y2="12" />
+          </svg>
+          <span>New Ticket</span>
+        </a>
+        <a href="/#knowledge_base" class="nav-item" data-zammad="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
+          </svg>
+          <span>Knowledge Base</span>
+        </a>
+        <a href="/#search" class="nav-item" data-zammad="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <span>Search</span>
+        </a>
+
+        <div class="nav-section-label">Administration</div>
+        <a href="/#manage" class="nav-item" data-zammad="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3" />
+            <path
+              d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" />
+          </svg>
+          <span>System Settings</span>
+        </a>
+        <a href="/#channels/web" class="nav-item" data-zammad="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+          </svg>
+          <span>Channels</span>
+        </a>
+        <a href="/#system/report" class="nav-item" data-zammad="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10" />
+            <line x1="12" y1="20" x2="12" y2="4" />
+            <line x1="6" y1="20" x2="6" y2="14" />
+          </svg>
+          <span>Reporting</span>
+        </a>
+        <a href="/#profile" class="nav-item" data-zammad="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span>Profile</span>
+        </a>
+
+
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <div class="user-avatar">…</div>
+          <div class="user-details" style="flex: 1;">
+            <span class="user-name">Loading…</span>
+            <span class="user-role"></span>
+          </div>
+          <button id="logout-btn" class="btn-logout" title="Log out">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="main-header">
+        <div class="header-left">
+          <h1 id="page-title">Dashboard</h1>
+          <span class="header-subtitle" id="last-refresh">Last updated: just now</span>
+        </div>
+        <div class="header-right" style="display: flex; gap: 15px; align-items: center;">
+          <button id="notification-btn" class="btn-icon" title="Notifications" style="position: relative;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span id="notification-badge"
+              style="position: absolute; top: 0px; right: -2px; background: #ef4444; color: white; font-size: 10px; font-weight: bold; padding: 2px 5px; border-radius: 10px; display: none;">0</span>
+          </button>
+          <button id="refresh-btn" class="btn-icon" title="Refresh data">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 4 23 10 17 10" />
+              <polyline points="1 20 1 14 7 14" />
+              <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15" />
+            </svg>
+          </button>
+          <div class="connection-status" id="connection-status">
+            <span class="status-dot"></span>
+            <span class="status-text">Disconnected</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Content -->
+      <div id="dashboard-content" class="dashboard-content">
+        <!-- Loading State -->
+        <div id="loading-state" class="loading-state">
+          <div class="spinner"></div>
+          <p>Connecting to Zammad...</p>
+        </div>
+
+        <!-- Setup Prompt -->
+        <div id="setup-prompt" class="setup-prompt hidden">
+          <div class="setup-icon">🔗</div>
+          <h2>Connect to Zammad</h2>
+          <p>Enter your Zammad URL and API token to get started</p>
+          <button id="setup-btn" class="btn-primary">Open Settings</button>
+        </div>
+
+        <!-- KPI Cards -->
+        <div id="kpi-section" class="kpi-grid hidden">
+          <div class="kpi-card kpi-open" id="kpi-open">
+            <div class="kpi-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
+            </div>
+            <div class="kpi-data">
+              <span class="kpi-value" id="kpi-open-value">—</span>
+              <span class="kpi-label">Open Tickets</span>
+            </div>
+          </div>
+          <div class="kpi-card kpi-closed" id="kpi-closed">
+            <div class="kpi-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+            </div>
+            <div class="kpi-data">
+              <span class="kpi-value" id="kpi-closed-value">—</span>
+              <span class="kpi-label">Closed Tickets</span>
+            </div>
+          </div>
+          <div class="kpi-card kpi-pending" id="kpi-pending">
+            <div class="kpi-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <div class="kpi-data">
+              <span class="kpi-value" id="kpi-pending-value">—</span>
+              <span class="kpi-label">Pending</span>
+            </div>
+          </div>
+          <div class="kpi-card kpi-new" id="kpi-new">
+            <div class="kpi-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="12" y1="18" x2="12" y2="12" />
+                <line x1="9" y1="15" x2="15" y2="15" />
+              </svg>
+            </div>
+            <div class="kpi-data">
+              <span class="kpi-value" id="kpi-new-value">—</span>
+              <span class="kpi-label">New Tickets</span>
+            </div>
+          </div>
+          <div class="kpi-card kpi-escalated" id="kpi-escalated">
+            <div class="kpi-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                <line x1="12" y1="9" x2="12" y2="13" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+            </div>
+            <div class="kpi-data">
+              <span class="kpi-value" id="kpi-escalated-value">—</span>
+              <span class="kpi-label">Escalated</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div id="charts-section" class="charts-grid hidden">
+          <div class="chart-card chart-large">
+            <div class="card-header">
+              <h3>Ticket Trends</h3>
+              <div class="chart-filter" id="trends-filter">
+                <button class="filter-btn active" data-days="1">Today</button>
+                <button class="filter-btn" data-days="7">7D</button>
+                <button class="filter-btn" data-days="30">30D</button>
+                <button class="filter-btn" data-days="365">1Y</button>
+              </div>
+            </div>
+            <div class="chart-body">
+              <canvas id="ticket-trends-chart"></canvas>
+            </div>
+          </div>
+          <div class="chart-card chart-small">
+            <div class="card-header" style="flex-wrap: wrap; gap: 10px;">
+              <h3>Priority</h3>
+              <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap;">
+                <select id="local-priority-filter-priority" class="filter-dropdown"
+                  style="background: rgba(255, 255, 255, 0.05); color: var(--text-primary); border: 1px solid var(--border-color); padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; outline: none; cursor: pointer;">
+                  <option value="all">All</option>
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                  <option value="critical">Critical</option>
+                </select>
+                <div class="chart-filter" id="priority-filter">
+                  <button class="filter-btn active" data-days="1">Today</button>
+                  <button class="filter-btn" data-days="7">7D</button>
+                  <button class="filter-btn" data-days="30">30D</button>
+                  <button class="filter-btn" data-days="365">1Y</button>
+                </div>
+              </div>
+            </div>
+            <div class="chart-body chart-body-donut">
+              <canvas id="priority-chart"></canvas>
+            </div>
+          </div>
+          <div class="chart-card chart-small">
+            <div class="card-header" style="flex-wrap: wrap; gap: 10px;">
+              <h3>Channel</h3>
+              <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap;">
+                <select id="local-channel-filter" class="filter-dropdown"
+                  style="background: rgba(255, 255, 255, 0.05); color: var(--text-primary); border: 1px solid var(--border-color); padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; outline: none; cursor: pointer;">
+                  <option value="all">All</option>
+                  <option value="email">Email</option>
+                  <option value="call">Call</option>
+                  <option value="chat">Chat</option>
+                  <option value="others">Others</option>
+                </select>
+                <div class="chart-filter" id="channel-filter">
+                  <button class="filter-btn active" data-days="1">Today</button>
+                  <button class="filter-btn" data-days="7">7D</button>
+                  <button class="filter-btn" data-days="30">30D</button>
+                  <button class="filter-btn" data-days="365">1Y</button>
+                </div>
+              </div>
+            </div>
+            <div class="chart-body chart-body-donut">
+              <canvas id="channel-chart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Agent Performance & Recent Tickets -->
+        <div id="bottom-section" class="bottom-grid hidden">
+          <div class="chart-card">
+            <div class="card-header">
+              <h3>Agent Status</h3>
+            </div>
+            <div class="card-body-table" style="max-height: 300px; overflow-y: auto;">
+              <table class="tickets-table" id="agent-status-table">
+                <thead>
+                  <tr>
+                    <th>Agent</th>
+                    <th>Status</th>
+                    <th>Active Tickets</th>
+                  </tr>
+                </thead>
+                <tbody id="agent-status-body">
+                  <tr>
+                    <td colspan="3" class="table-empty">Loading agents...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="chart-card">
+            <div class="card-header">
+              <h3>Recent Tickets</h3>
+              <a href="#" class="view-all-link" id="view-all-tickets">View All →</a>
+            </div>
+            <div class="card-body-table">
+              <table class="tickets-table" id="recent-tickets-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>State</th>
+                    <th>Priority</th>
+                    <th>Created</th>
+                  </tr>
+                </thead>
+                <tbody id="recent-tickets-body">
+                  <tr>
+                    <td colspan="5" class="table-empty">No tickets found</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- My Assigned Tickets -->
+        <div id="my-tickets-section" class="escalated-grid hidden" style="margin-top: 24px;">
+          <div class="chart-card escalated-card">
+            <div class="card-header">
+              <h3>My Assigned Tickets</h3>
+              <a href="#" class="view-all-link" id="view-all-my-tickets">View All →</a>
+            </div>
+            <div class="card-body-table">
+              <table class="tickets-table" id="my-tickets-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>State</th>
+                    <th>Priority</th>
+                    <th>Created</th>
+                  </tr>
+                </thead>
+                <tbody id="my-tickets-body">
+                  <tr>
+                    <td colspan="5" class="table-empty">Loading your tickets...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Escalated Tickets -->
+        <div id="escalated-section" class="escalated-grid hidden" style="margin-top: 24px;">
+          <div class="chart-card escalated-card">
+            <div class="card-header">
+              <h3>⚠️ Escalated Tickets</h3>
+              <a href="#" class="view-all-link" id="view-all-escalated">View All →</a>
+            </div>
+            <div class="card-body-table">
+              <table class="tickets-table" id="escalated-tickets-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>State</th>
+                    <th>Priority</th>
+                    <th>Escalated</th>
+                  </tr>
+                </thead>
+                <tbody id="escalated-tickets-body">
+                  <tr>
+                    <td colspan="5" class="table-empty">No escalated tickets 🎉</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div> <!-- Closes dashboard-content -->
+    </main>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
